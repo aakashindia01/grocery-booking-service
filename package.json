@@ -1,0 +1,26 @@
+{
+  "name": "grocery-booking-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "start": "node dist/app.js",
+    "dev": "nodemon src/app.ts",
+    "build": "tsc -p ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.21",
+    "@types/sequelize": "^4.28.20",
+    "express": "^4.19.2",
+    "mysql2": "^3.9.6",
+    "sequelize": "^6.37.3"
+  }
+}
