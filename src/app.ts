@@ -1,13 +1,15 @@
 import express from 'express';
 import { sequelize } from './config/db';
 import userRouter from './routes/userRouter';
+import adminRouter from './routes/adminRouter';
 
 const app = express();
 app.use(express.json());
 
 const PORT = process.env.PORT || 3100;
 
-app.use('/users', userRouter);
+app.use('/api/user', userRouter);
+app.use('/api/admin', adminRouter);
 
 sequelize
 .sync()
