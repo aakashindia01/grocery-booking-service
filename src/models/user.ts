@@ -44,6 +44,6 @@ User.init({
     tableName: 'Users',
     sequelize,
     timestamps: true
-})
+});
 
 export { User };

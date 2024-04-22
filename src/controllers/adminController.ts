@@ -12,7 +12,6 @@ class AdminController {
             console.error('Error Adding Grocery item', error);
             res.status(500).json({ error: 'Internal server error' });
         }
-
     }
 
     public async getGroceryItem(req: Request, res: Response): Promise<void> {
@@ -43,12 +42,18 @@ class AdminController {
     public async updateGroceryItemInventory(req: Request, res: Response): Promise<void> {
         try {
             const { id } = req.params;
-            const { inventory } = req.body;
-            const [updatedCount] = await GroceryItem.update({ inventory }, { where: { id } });
-            if (updatedCount === 0) {
+            const { incrementBy } = req.body;
+
+            const groceryItem = await GroceryItem.findByPk(id);
+            if (!groceryItem) {
                 res.status(404).json({ error: 'Grocery item not found' });
                 return;
             }
+
+            const updatedInventory = groceryItem.inventory + incrementBy;
+
+            await GroceryItem.update({ inventory: updatedInventory }, { where: { id } });
+
             res.json({ message: 'Inventory level updated successfully' });
         } catch (error) {
             console.error('Error updating inventory level:', error);
